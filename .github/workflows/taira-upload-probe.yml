@@ -1,0 +1,15 @@
+name: Taira Release Upload Probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/taira-upload-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "taira-release-upload-ok"
