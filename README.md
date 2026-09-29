@@ -2,17 +2,19 @@
 
 ## Windows 下載
 
-[下載 TairaSetup.exe](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.exe)
+[下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本：`1.2.3-test.19`  
+目前版本：`1.2.4`  
 支援：Windows 11 x64
+
+標準 Windows Installer (MSI)，不再使用自解壓 EXE。
 
 Public Windows distribution for Taira.
 
 The only update artifact is:
 
-- `TairaSetup.exe`
+- `TairaSetup.msi`
 
-Taira downloads the installer directly from this repository and verifies the installer's embedded Ed25519-signed metadata before applying an update.
+Taira downloads the MSI directly from this repository, reads its Windows Installer version metadata, and upgrades through `msiexec`.
 
-No update manifest, payload ZIP, checksum file, private key, or internal configuration is published here.
+No update manifest, payload ZIP, private key, or internal configuration is published here.
