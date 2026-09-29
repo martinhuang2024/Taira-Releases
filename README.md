@@ -1,18 +1,15 @@
 # Taira Releases
 
-Public distribution repository for Taira Windows binaries and update metadata.
+Public Windows distribution for Taira.
 
-The Taira source repository remains private. This repository contains release metadata and downloadable binaries only.
+The only update artifact is:
 
-Expected release assets:
+- `TairaSetup.exe`
 
-- `TairaSetup-<version>.exe` — Windows x64 installer
-- `Taira-Windows-<version>.zip` — updater payload
-- `windows-stable.json` — signed stable update manifest
-- `SHA256SUMS.txt` — release checksums
+Current published installer: `1.2.3-test.9`
 
-Taira checks this endpoint for stable updates:
+Taira downloads the installer directly from this repository and verifies the
+installer's embedded Ed25519-signed metadata before applying an update.
 
-`https://github.com/martinhuang2024/Taira-Releases/releases/latest/download/windows-stable.json`
-
-Update manifests are signed with Ed25519. The private signing key must never be committed or uploaded here.
+No update manifest, payload ZIP, checksum file, private key, or internal
+configuration is published here.
