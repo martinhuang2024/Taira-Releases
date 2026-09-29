@@ -4,7 +4,7 @@
 
 [下載 TairaSetup.exe](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.exe)
 
-目前版本：`1.2.3-test.9`  
+目前版本：`1.2.3-test.19`  
 支援：Windows 11 x64
 
 Public Windows distribution for Taira.
