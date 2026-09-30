@@ -8,15 +8,15 @@
     <language>zh-TW</language>
 
     <item>
-      <title>Taira 1.2.18</title>
-      <sparkle:version>1.2.18</sparkle:version>
-      <sparkle:shortVersionString>1.2.18</sparkle:shortVersionString>
+      <title>Taira 1.2.19</title>
+      <sparkle:version>1.2.19</sparkle:version>
+      <sparkle:shortVersionString>1.2.19</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
-      <pubDate>Wed, 30 Sep 2026 21:25:47 +0000</pubDate>
+      <pubDate>Wed, 30 Sep 2026 21:45:13 +0000</pubDate>
       <enclosure
         url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg"
-        sparkle:edSignature="ScgWQx1NCCxQsdWZbBY02G+JphWl+wIwFbXUxEDV2VZLUyyLPnBJF7VBmvyPEnh3lF6xU16bjyQszwZVgCtfCQ=="
-        length="48823115"
+        sparkle:edSignature="6U6kly0Q+AbKpk5tvBujvZrrTwicx3wugoQYNCPLjQvbPMhRX1jagfz00b0DJCF9PyR+qGa+dvyKVtppd778Bg=="
+        length="49240215"
         type="application/octet-stream" />
     </item>
   </channel>
