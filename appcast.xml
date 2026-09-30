@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>Taira Updates</title>
+    <link>https://github.com/martinhuang2024/Taira-Releases</link>
+    <description>Taira macOS updates</description>
+    <language>zh-TW</language>
+
+    <item>
+      <title>Taira 1.2.18</title>
+      <sparkle:version>1.2.18</sparkle:version>
+      <sparkle:shortVersionString>1.2.18</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+      <pubDate>Wed, 30 Sep 2026 21:25:47 +0000</pubDate>
+      <enclosure
+        url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg"
+        sparkle:edSignature="ScgWQx1NCCxQsdWZbBY02G+JphWl+wIwFbXUxEDV2VZLUyyLPnBJF7VBmvyPEnh3lF6xU16bjyQszwZVgCtfCQ=="
+        length="48823115"
+        type="application/octet-stream" />
+    </item>
+  </channel>
+</rss>
