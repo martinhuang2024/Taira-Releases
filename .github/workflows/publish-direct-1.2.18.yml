@@ -1,0 +1,74 @@
+name: Direct Publish Taira 1.2.18
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-direct-1.2.18.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Windows MSI
+        env:
+          ARTIFACT_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-c9b4-8206-ad8e-4036684190d4/raw?se=2026-09-30T21%3A29%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=32e8c5f9-9699-594a-a254-57866c2b8e26&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T19%3A32%3A01Z&ske=2026-10-01T19%3A32%3A01Z&sks=b&skv=2026-02-06&sig=rO3dbYdhfMJH2H%2BwkUYBiyqkC/nGOkUcpah9ufOoBuE%3D"
+        run: |
+          set -euo pipefail
+          curl -fL "$ARTIFACT_URL" -o /tmp/taira-win.zip
+          rm -rf /tmp/taira-win
+          mkdir -p /tmp/taira-win
+          unzip -q /tmp/taira-win.zip -d /tmp/taira-win
+          MSI="$(find /tmp/taira-win -type f -name 'TairaSetup.msi' -print -quit)"
+          test -n "$MSI"
+          cp "$MSI" TairaSetup.msi
+
+      - name: Fetch macOS DMG
+        env:
+          ARTIFACT_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-bcd8-8206-963e-46fc93daf693/raw?se=2026-09-30T21%3A23%3A12Z&sp=r&sv=2026-02-06&sr=b&scid=b4e74554-24e8-5312-a0d8-82e7d1c05cc5&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T16%3A39%3A09Z&ske=2026-10-01T16%3A39%3A09Z&sks=b&skv=2026-02-06&sig=NAEU8jbgwAp9HyIt0MFqbnk6WT83EXHSUai0AmzGwq8%3D"
+        run: |
+          set -euo pipefail
+          curl -fL "$ARTIFACT_URL" -o /tmp/taira-mac.zip
+          rm -rf /tmp/taira-mac
+          mkdir -p /tmp/taira-mac
+          unzip -q /tmp/taira-mac.zip -d /tmp/taira-mac
+          DMG="$(find /tmp/taira-mac -type f -name 'Taira.dmg' -print -quit)"
+          test -n "$DMG"
+          cp "$DMG" Taira.dmg
+
+      - name: Update README
+        run: |
+          cat > README.md <<'EOF'
+          # Taira Releases
+
+          ## Windows 下載
+
+          [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
+
+          目前版本: `1.2.18`  
+          支援: Windows 11 x64
+
+          標準 Windows Installer (MSI)。
+
+          ## macOS 下載
+
+          [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
+
+          目前版本: `1.2.18`  
+          支援: macOS 12+ / Apple Silicon
+
+          安裝後由 Taira 內建 Sparkle 檢查與安裝更新。
+          EOF
+
+      - name: Publish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md TairaSetup.msi Taira.dmg
+          git commit -m "chore: publish Taira 1.2.18 Windows and macOS"
+          git push origin main
