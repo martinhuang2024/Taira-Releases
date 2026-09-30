@@ -1,0 +1,53 @@
+name: Publish Taira MSI 1.2.14
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-1.2.14.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout releases repo
+        uses: actions/checkout@v4
+
+      - name: Download built MSI artifact
+        env:
+          ARTIFACT_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-7a28-8209-8948-5d9806356140/raw?se=2026-09-30T19%3A47%3A05Z&sp=r&sv=2026-02-06&sr=b&scid=17790c81-eddd-5a1d-b5b4-b6d8b91addb4&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T19%3A29%3A32Z&ske=2026-10-01T19%3A29%3A32Z&sks=b&skv=2026-02-06&sig=BAHvyjbp0PjV8GN/WCHDX0U/FMQ1DYkONiMRh%2Bz4q%2Bg%3D"
+        run: |
+          set -euo pipefail
+          curl -fL "$ARTIFACT_URL" -o /tmp/taira-artifact.zip
+          rm -rf /tmp/taira-artifact
+          mkdir -p /tmp/taira-artifact
+          unzip -q /tmp/taira-artifact.zip -d /tmp/taira-artifact
+          MSI="$(find /tmp/taira-artifact -type f -name 'TairaSetup.msi' -print -quit)"
+          test -n "$MSI"
+          cp "$MSI" TairaSetup.msi
+
+      - name: Update release metadata
+        run: |
+          cat > README.md <<'EOF'
+# Taira Releases
+
+## Windows 下載
+
+[下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
+
+目前版本: `1.2.14`  
+支援: Windows 11 x64
+
+標準 Windows Installer (MSI)，不再使用自解壓 EXE。
+EOF
+
+      - name: Commit release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md TairaSetup.msi
+          git commit -m "chore: publish Taira Windows MSI 1.2.14"
+          git push origin main
