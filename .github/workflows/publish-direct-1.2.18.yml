@@ -17,7 +17,7 @@ jobs:
 
       - name: Fetch Windows MSI
         env:
-          ARTIFACT_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-c9b4-8206-ad8e-4036684190d4/raw?se=2026-09-30T21%3A29%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=32e8c5f9-9699-594a-a254-57866c2b8e26&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T19%3A32%3A01Z&ske=2026-10-01T19%3A32%3A01Z&sks=b&skv=2026-02-06&sig=rO3dbYdhfMJH2H%2BwkUYBiyqkC/nGOkUcpah9ufOoBuE%3D"
+          ARTIFACT_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-ad30-8209-8ff6-fa37c936259a/raw?se=2026-09-30T21%3A30%3A09Z&sp=r&sv=2026-02-06&sr=b&scid=2a789342-5e89-52cb-8fc4-5135188a86ad&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T20%3A55%3A24Z&ske=2026-10-01T20%3A55%3A24Z&sks=b&skv=2026-02-06&sig=pr7PbYpP2UQ7mmXFV0E5qVRnlFGf9DCdgukPNfgXd/0%3D"
         run: |
           set -euo pipefail
           curl -fL "$ARTIFACT_URL" -o /tmp/taira-win.zip
@@ -30,7 +30,7 @@ jobs:
 
       - name: Fetch macOS DMG
         env:
-          ARTIFACT_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-bcd8-8206-963e-46fc93daf693/raw?se=2026-09-30T21%3A23%3A12Z&sp=r&sv=2026-02-06&sr=b&scid=b4e74554-24e8-5312-a0d8-82e7d1c05cc5&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T16%3A39%3A09Z&ske=2026-10-01T16%3A39%3A09Z&sks=b&skv=2026-02-06&sig=NAEU8jbgwAp9HyIt0MFqbnk6WT83EXHSUai0AmzGwq8%3D"
+          ARTIFACT_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-3bdc-8206-93b2-e0ab3df7147e/raw?se=2026-09-30T21%3A30%3A10Z&sp=r&sv=2026-02-06&sr=b&scid=47d17ed4-b27d-5955-9f20-d87b4d22ca45&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T20%3A53%3A11Z&ske=2026-10-01T20%3A53%3A11Z&sks=b&skv=2026-02-06&sig=mliG81frCwbjNvJBMDoga2Lh88T3CQdn7JLEmZimB9M%3D"
         run: |
           set -euo pipefail
           curl -fL "$ARTIFACT_URL" -o /tmp/taira-mac.zip
