@@ -4,7 +4,7 @@
 
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.28
+目前版本: 1.2.29
 支援: Windows 11 x64
 
 標準 Windows Installer (MSI)。
