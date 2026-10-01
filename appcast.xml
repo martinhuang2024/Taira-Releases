@@ -8,6 +8,19 @@
     <language>zh-TW</language>
 
     <item>
+      <title>Taira 1.2.26</title>
+      <sparkle:version>1.2.26</sparkle:version>
+      <sparkle:shortVersionString>1.2.26</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+      <pubDate>Thu, 01 Oct 2026 16:56:25 +0000</pubDate>
+      <enclosure
+        url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg"
+        sparkle:edSignature="Dp75JMu6nYLWg7BKj/bcouLX/XA6IOhK6RGFPCWA5B+7dDuc0jfK2LXeSF97unEt5zjrSwQ3kcwFvB9jCCu6Cg=="
+        length="49237274"
+        type="application/octet-stream" />
+    </item>
+
+    <item>
       <title>Taira 1.2.25</title>
       <sparkle:version>1.2.25</sparkle:version>
       <sparkle:shortVersionString>1.2.25</sparkle:shortVersionString>
