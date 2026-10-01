@@ -1,49 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"
-     xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
-  <channel>
-    <title>Taira Updates</title>
-    <link>https://github.com/martinhuang2024/Taira-Releases</link>
-    <description>Taira macOS updates</description>
-    <language>zh-TW</language>
-
-    <item>
-      <title>Taira 1.2.26</title>
-      <sparkle:version>1.2.26</sparkle:version>
-      <sparkle:shortVersionString>1.2.26</sparkle:shortVersionString>
-      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
-      <pubDate>Thu, 01 Oct 2026 16:56:25 +0000</pubDate>
-      <enclosure
-        url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg"
-        sparkle:edSignature="Dp75JMu6nYLWg7BKj/bcouLX/XA6IOhK6RGFPCWA5B+7dDuc0jfK2LXeSF97unEt5zjrSwQ3kcwFvB9jCCu6Cg=="
-        length="49237274"
-        type="application/octet-stream" />
-    </item>
-
-    <item>
-      <title>Taira 1.2.25</title>
-      <sparkle:version>1.2.25</sparkle:version>
-      <sparkle:shortVersionString>1.2.25</sparkle:shortVersionString>
-      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
-      <pubDate>Thu, 01 Oct 2026 16:23:00 +0000</pubDate>
-      <enclosure
-        url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira-1.2.25.dmg"
-        sparkle:edSignature="apnesSB1n6tEpiVn6J/d/3eJ1W4BxXLDGFcCKEWtp+Jggx8bP//YGeHUAWDjYUG/k5DzRnfBhf7YcA1ylfNeBg=="
-        length="49241641"
-        type="application/octet-stream" />
-    </item>
-
-    <item>
-      <title>Taira 1.2.23</title>
-      <sparkle:version>1.2.23</sparkle:version>
-      <sparkle:shortVersionString>1.2.23</sparkle:shortVersionString>
-      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
-      <pubDate>Wed, 30 Sep 2026 22:22:07 +0000</pubDate>
-      <enclosure
-        url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira-1.2.23.dmg"
-        sparkle:edSignature="ajCVWA6H6WT+4Xg/euxa/gLuKCHtOFOryFbiD4y1BzlG4K4U7Sji37hDBl5hyIDp9wZfNdo3OzE0UWu9JGSqBQ=="
-        length="49241357"
-        type="application/octet-stream" />
-    </item>
-  </channel>
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Taira</title>
+        <item>
+            <title>1.2.28</title>
+            <pubDate>Thu, 01 Oct 2026 19:07:56 +0000</pubDate>
+            <sparkle:version>1.2.28</sparkle:version>
+            <sparkle:shortVersionString>1.2.28</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira-1.2.28.dmg" length="49237243" type="application/octet-stream" sparkle:edSignature="6RiMLnwMAFJLSq38RvzXuJAxq92mstXrwsLaq7Pf///SPbQm3jnRq4yADnZqFX2MiyJ09AqPN0IyHn1zOkyhDg=="/>
+        </item>
+    </channel>
 </rss>
