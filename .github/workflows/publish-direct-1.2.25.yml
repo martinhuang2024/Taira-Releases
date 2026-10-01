@@ -1,0 +1,97 @@
+name: Direct Publish Taira 1.2.25
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-direct-1.2.25.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preserve signed 1.2.23 DMG for existing Sparkle feed
+        run: |
+          set -euo pipefail
+          test -f Taira.dmg
+          cp Taira.dmg Taira-1.2.23.dmg
+
+      - name: Fetch macOS 1.2.25 DMG
+        env:
+          ARTIFACT_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-ab58-8209-b8d1-b73e227b8cea/raw?se=2026-10-01T15%3A52%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=a9842567-29c7-501c-a9d7-489e03cb6f0b&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T15%3A45%3A23Z&ske=2026-10-02T15%3A45%3A23Z&sks=b&skv=2026-02-06&sig=nE04ZTaeHJcpQvidPdcb4gXSoSBBUzchWIcMdXrGnww%3D"
+        run: |
+          set -euo pipefail
+          curl -fL "$ARTIFACT_URL" -o /tmp/taira-mac.zip
+          mkdir -p /tmp/taira-mac
+          unzip -q /tmp/taira-mac.zip -d /tmp/taira-mac
+          DMG="$(find /tmp/taira-mac -type f -name 'Taira.dmg' -print -quit)"
+          test -n "$DMG"
+          test "$(stat -c%s "$DMG")" = "49241641"
+          cp "$DMG" Taira.dmg
+
+      - name: Fetch Windows 1.2.25 MSI
+        env:
+          ARTIFACT_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-85d0-8206-a6b0-4f6b0420db84/raw?se=2026-10-01T15%3A59%3A48Z&sp=r&sv=2026-02-06&sr=b&scid=2dccb382-2639-5e3f-9e4a-5e4848b5602d&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T15%3A47%3A10Z&ske=2026-10-02T15%3A47%3A10Z&sks=b&skv=2026-02-06&sig=Cefy%2B/bkQNX1whdAdj17mco0xQlXM1al6LMNVWo7YzM%3D"
+        run: |
+          set -euo pipefail
+          curl -fL "$ARTIFACT_URL" -o /tmp/taira-win.zip
+          mkdir -p /tmp/taira-win
+          unzip -q /tmp/taira-win.zip -d /tmp/taira-win
+          MSI="$(find /tmp/taira-win -type f -name 'TairaSetup.msi' -print -quit)"
+          test -n "$MSI"
+          test "$(stat -c%s "$MSI")" = "31735149"
+          cp "$MSI" TairaSetup.msi
+
+      - name: Keep existing Sparkle 1.2.23 feed valid
+        run: |
+          set -euo pipefail
+          grep -q '<sparkle:version>1.2.23</sparkle:version>' appcast.xml
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("appcast.xml")
+          s=p.read_text()
+          old="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg"
+          new="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira-1.2.23.dmg"
+          if old not in s:
+              raise SystemExit("expected 1.2.23 enclosure URL not found")
+          p.write_text(s.replace(old,new,1))
+          PY
+
+      - name: Update README
+        run: |
+          cat > README.md <<'EOF'
+          # Taira Releases
+
+          ## Windows 下載
+
+          [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
+
+          目前版本: `1.2.25`  
+          支援: Windows 11 x64
+
+          標準 Windows Installer (MSI)。
+
+          ## macOS 下載
+
+          [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
+
+          目前版本: `1.2.25`  
+          支援: macOS 12+ / Apple Silicon
+
+          安裝後由 Taira 內建 Sparkle 檢查與安裝更新。
+          EOF
+
+      - name: Publish
+        run: |
+          set -euo pipefail
+          rm .github/workflows/publish-direct-1.2.25.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: publish Taira 1.2.25 Windows and macOS"
+          git push origin main
