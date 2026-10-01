@@ -90,3 +90,5 @@ jobs:
           git add -A
           git commit -m "chore: publish Taira 1.2.25 Windows and macOS"
           git push origin main
+
+# trigger publish
