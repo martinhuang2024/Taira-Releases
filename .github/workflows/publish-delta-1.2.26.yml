@@ -1,0 +1,96 @@
+name: Publish Taira 1.2.26 from delta
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-delta-1.2.26.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: taira-releases-publish-1.2.26
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install zstd
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y zstd
+
+      - name: Verify current 1.2.25 bases
+        run: |
+          set -euo pipefail
+          echo "68f77419892dc089f776a430912ce6491a0ed01d9ce446c5ef285e982d8c2c2f  Taira.dmg" | sha256sum -c -
+          echo "037b40e18c23bbcf8ba3210ec8ee7aa874b4755810c4f8aa906a8e94da2244f8  TairaSetup.msi" | sha256sum -c -
+
+      - name: Reassemble delta patches
+        run: |
+          set -euo pipefail
+          cat patches/1.2.26/dmg.part.* > /tmp/dmg.patch.zst
+          cat patches/1.2.26/msi.part.* > /tmp/msi.patch.zst
+
+      - name: Rebuild 1.2.26 binaries
+        run: |
+          set -euo pipefail
+          zstd -d --patch-from=Taira.dmg /tmp/dmg.patch.zst -o /tmp/Taira-1.2.26.dmg
+          zstd -d --patch-from=TairaSetup.msi /tmp/msi.patch.zst -o /tmp/TairaSetup-1.2.26.msi
+          echo "4ed839e1187c26793fce11fb9a4d3fd7107f196eb508adfea2a6a537005b8b3d  /tmp/Taira-1.2.26.dmg" | sha256sum -c -
+          echo "521266d74b0c32a2d3218410e5b82c083af8298235ed73592c9ebc41484f8ee7  /tmp/TairaSetup-1.2.26.msi" | sha256sum -c -
+
+      - name: Publish binaries and preserve signed 1.2.25 feed target
+        run: |
+          set -euo pipefail
+          cp Taira.dmg Taira-1.2.25.dmg
+          cp /tmp/Taira-1.2.26.dmg Taira.dmg
+          cp /tmp/TairaSetup-1.2.26.msi TairaSetup.msi
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("appcast.xml")
+          s = p.read_text()
+          old = "https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg"
+          new = "https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira-1.2.25.dmg"
+          if "<sparkle:version>1.2.25</sparkle:version>" not in s:
+              raise SystemExit("unexpected Sparkle version")
+          if old not in s:
+              raise SystemExit("expected 1.2.25 enclosure URL missing")
+          p.write_text(s.replace(old, new, 1))
+          PY
+          cat > README.md <<'EOF'
+          # Taira Releases
+
+          ## Windows 下載
+
+          [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
+
+          目前版本: `1.2.26`  
+          支援: Windows 11 x64
+
+          標準 Windows Installer (MSI)。
+
+          ## macOS 下載
+
+          [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
+
+          目前版本: `1.2.26`  
+          支援: macOS 12+ / Apple Silicon
+
+          安裝後由 Taira 內建 Sparkle 檢查與安裝更新。
+          EOF
+
+      - name: Commit release and cleanup
+        run: |
+          set -euo pipefail
+          rm -rf patches/1.2.26
+          rm .github/workflows/publish-delta-1.2.26.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: publish Taira 1.2.26 Windows and macOS"
+          git push origin main
