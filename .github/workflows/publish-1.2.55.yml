@@ -1,0 +1,66 @@
+name: Publish Taira macOS 1.2.55
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-1.2.55.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download signed macOS archive
+        run: |
+          set -euo pipefail
+          curl -fL --retry 5 --retry-delay 2 \
+            "https://martinmacbook-air.tail39b2be.ts.net/taira-release-1255/Taira-1.2.55.zip" \
+            -o Taira.zip
+          echo "a60baeeb19008473a306c62d44eb49cb1ec884607dee59b3820cedbe5e72403e  Taira.zip" | sha256sum -c -
+          test "$(stat -c%s Taira.zip)" = "28146597"
+
+      - name: Update Sparkle metadata
+        run: |
+          cat > appcast.xml <<'XML'
+          <?xml version="1.0" standalone="yes"?>
+          <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+              <channel>
+                  <title>Taira</title>
+                  <item>
+                      <title>1.2.55</title>
+                      <pubDate>Sun, 04 Oct 2026 22:49:20 +0000</pubDate>
+                      <sparkle:version>1.2.55</sparkle:version>
+                      <sparkle:shortVersionString>1.2.55</sparkle:shortVersionString>
+                      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+                      <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+                      <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.zip" length="28146597" type="application/octet-stream" sparkle:edSignature="xXc+kX0jsZSEptKB+HxnRQmD5JdYjEZUAzmknKbqBHkOCOrExNbkesX3oopCZmnlNPgkLmztssPKVRGwhp6tDQ=="/>
+                  </item>
+              </channel>
+          </rss>
+          XML
+
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("README.md")
+          s = p.read_text()
+          marker = "## macOS 下載"
+          i = s.index(marker)
+          before, after = s[:i], s[i:]
+          import re
+          after = re.sub(r"目前版本:\s*[0-9.]+", "目前版本: 1.2.55", after, count=1)
+          p.write_text(before + after)
+          PY
+
+      - name: Publish release files
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Taira.zip appcast.xml README.md
+          git commit -m "release: Taira macOS 1.2.55"
+          git push
