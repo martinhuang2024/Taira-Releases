@@ -19,7 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           curl -fL --retry 5 --retry-delay 2 \
-            "https://martinmacbook-air.tail39b2be.ts.net/taira-release-1255/Taira-1.2.55.zip" \
+            "https://tmpfiles.org/dl/wlAFftYjMy6h/taira-1.2.55.zip" \
             -o Taira.zip
           echo "a60baeeb19008473a306c62d44eb49cb1ec884607dee59b3820cedbe5e72403e  Taira.zip" | sha256sum -c -
           test "$(stat -c%s Taira.zip)" = "28146597"
