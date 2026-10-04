@@ -1,0 +1,38 @@
+name: Publish Taira DMG 1.2.55
+
+on:
+  push:
+    branches: [update-feed]
+    paths:
+      - ".github/workflows/publish-dmg-1.2.55.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download signed DMG directly from build Mac
+        run: |
+          set -euo pipefail
+          curl -fL --retry 5 --retry-delay 2 \
+            --resolve martinmacbook-air.tail39b2be.ts.net:443:103.84.155.153 \
+            "https://martinmacbook-air.tail39b2be.ts.net/taira-dmg-1255/Taira.dmg" \
+            -o Taira.dmg
+          echo "9a9de5f6657e8ed0a343c9daa7c245ac0c9c247d96de78387b20d3dab97b959d  Taira.dmg" | sha256sum -c -
+          test "$(stat -c%s Taira.dmg)" = "28196864"
+
+      - name: Publish DMG to main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Taira.dmg
+          git commit -m "release: Taira macOS 1.2.55 DMG"
+          git push origin HEAD:main
