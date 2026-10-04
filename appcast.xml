@@ -4,12 +4,12 @@
         <title>Taira</title>
         <item>
             <title>1.2.55</title>
-            <pubDate>Sun, 04 Oct 2026 23:24:50 +0000</pubDate>
+            <pubDate>Sun, 04 Oct 2026 23:39:52 +0000</pubDate>
             <sparkle:version>1.2.55</sparkle:version>
             <sparkle:shortVersionString>1.2.55</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg" length="28182528" type="application/octet-stream" sparkle:edSignature="CHFKi/mOdLeJAYb5xEL0jXZmthSB1NfzVetLHJ5NoWBHMPt3y19h6/hpajiIfu3+OnDDi6WF66fa4utNS/CYDg=="/>
+            <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg" length="28183040" type="application/octet-stream" sparkle:edSignature="TI8sTQyWm7A6H0XhQldEzZDF+M3VFyOOj6HjRIIL1+L1EcPbXhfeRUmliYoP80jfbTmzFr6/696bnNrzElktDA=="/>
         </item>
     </channel>
 </rss>
