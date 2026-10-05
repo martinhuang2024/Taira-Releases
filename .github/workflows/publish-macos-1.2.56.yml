@@ -1,0 +1,71 @@
+name: Publish Taira macOS 1.2.56
+
+on:
+  push:
+    branches: [update-feed]
+    paths:
+      - ".github/workflows/publish-macos-1.2.56.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download verified Taira 1.2.56 DMG
+        run: |
+          set -euo pipefail
+          curl -fL --retry 5 --retry-delay 2 \
+            --resolve martinmacbook-air.tail39b2be.ts.net:443:103.84.155.217 \
+            "https://martinmacbook-air.tail39b2be.ts.net/taira-dmg-1256/Taira.dmg" \
+            -o Taira.dmg
+          echo "f9eb5701abb684443933a9eea189c60c227800db4dfa2544de4ca43cfd2cc94a  Taira.dmg" | sha256sum -c -
+          test "$(stat -c%s Taira.dmg)" = "28196352"
+
+      - name: Update Sparkle appcast and README
+        run: |
+          set -euo pipefail
+          cat > appcast.xml <<'XML'
+          <?xml version="1.0" standalone="yes"?>
+          <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+              <channel>
+                  <title>Taira</title>
+                  <item>
+                      <title>1.2.56</title>
+                      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+                      <sparkle:version>1.2.56</sparkle:version>
+                      <sparkle:shortVersionString>1.2.56</sparkle:shortVersionString>
+                      <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+                      <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+                      <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg" length="28196352" type="application/octet-stream" sparkle:edSignature="DCA3TRrz9bYWc3JGWmp8V+u+YInI9VI5StIsCs6z9QI7ei/opJbSvlEFv9TD63FQSM7xAdrXTeL5+ZFWp0q+Aw=="/>
+                  </item>
+              </channel>
+          </rss>
+          XML
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path("README.md")
+          s = p.read_text()
+          marker = "## macOS"
+          i = s.index(marker)
+          before, after = s[:i], s[i:]
+          after = re.sub(r"目前版本:\s*[0-9.]+", "目前版本: 1.2.56", after, count=1)
+          p.write_text(before + after)
+          PY
+
+      - name: Publish
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Taira.dmg appcast.xml README.md
+          git commit -m "release: Taira macOS 1.2.56 startup hotfix"
+          git push origin HEAD:main
