@@ -11,7 +11,7 @@
 
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.57
+目前版本: 1.2.58
 支援: macOS 12+ / Apple Silicon
 
-macOS 1.2.57 為 Bun runtime 修正版，已通過 packaged Host runtime smoke、完整 App 啟動、DMG 與 codesign 驗證。
+macOS 1.2.58 修正登入 controller session 在 macOS 上遇到 EPERM/EACCES 時無法持久化的問題；已通過 packaged Bun Host smoke、Rust 測試、DMG 與 codesign 驗證。
