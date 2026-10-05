@@ -11,7 +11,7 @@
 
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.55  
+目前版本: 1.2.56  
 支援: macOS 12+ / Apple Silicon
 
 macOS 由 Taira 內建 Sparkle 讀取 `appcast.xml` 檢查與安裝更新。
