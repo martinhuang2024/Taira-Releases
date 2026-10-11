@@ -4,16 +4,16 @@
 
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.61
+目前版本: 1.2.62
 支援: Windows 11 x64
 
-修正 MSI 升級後啟動失敗（2753）：補齊 EXE 版本與語言資訊、修正 MSI 字串表計數，並支援同版本重裝。已完成 Mac 交叉編譯、168 項本地測試及正式 Ed25519 更新簽章；公開發布包已在 Windows 實機從 1.2.60 升級成功，安裝回傳碼 0；Host 自動啟動並回報 1.2.61，原有登入與驗證器設定保留。
+補上閒置畫面恢復：前景影像解碼超過 5 秒或畫面通道 15 秒未收到訊息時自動重連；分別檢查畫面與操作通道心跳，丟棄舊串流延遲完成的影格。176 項本地測試通過，沿用正式 Ed25519 更新簽章與已修復的 MSI 打包流程。長時間實機閒置仍需觀察。
 
 ## macOS
 
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.61
+目前版本: 1.2.62
 支援: macOS 12+ / Apple Silicon
 
 已從相同原始碼重建，通過 packaged Bun Host 健康檢查、DMG 掛載、App codesign 驗證及 Sparkle 更新簽章驗證。
