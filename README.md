@@ -17,3 +17,5 @@
 支援: macOS 12+ / Apple Silicon
 
 已從相同原始碼重建，通過 packaged Bun Host 健康檢查、DMG 掛載、App codesign 驗證及 Sparkle 更新簽章驗證。
+
+Windows 實機驗證：從 1.2.61 升級，MSI 回傳碼 0；安裝尾段第一次啟動遇到 EBUSY 檔案鎖，安裝結束後重新啟動成功。Host 回報 1.2.62 / client build 82，Host 與擷取程序正常，登入與驗證器設定檔雜湊未變更。
