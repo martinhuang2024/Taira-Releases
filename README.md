@@ -3,21 +3,25 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.65
+目前版本: 1.2.66
 支援: Windows 11 x64
-
-自動模式及 TCP 背景恢復優先協商 H.265/HEVC，瀏覽器需提供支援。HEVC 失敗時約 1 秒後改試 H.264，並暫緩 HEVC 重試 5 分鐘；明確 H.264／不支援 HEVC 時維持 AVC。背景協商保留 TCP 解碼器，已正常播放的 RTC 不強制重建。Windows 本機擷取仍為 JPEG；HEVC 策略適用相容 Mac RTC Host。
-
-194 項本地測試通過。Client build 84 / cache taira-v100，保留畫質回升與過期影格修正，沿用正式 Ed25519 更新簽章。
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.65
+目前版本: 1.2.66
 支援: macOS 12+ / Apple Silicon
 
-相同原始碼打包；已通過 packaged Bun Host、唯讀 DMG 掛載、codesign deep strict 與 Sparkle 更新簽章驗證。
+## 本次更新
 
-編碼策略與回退以模擬測試驗證；流暢度仍取決於實際瀏覽器與連線。更新後請重新整理遠端頁面。
+- 弱網嚴重壅塞時更快降低碼率與自動檔位；自動 FPS 可降至 20／12。手動固定解析度／FPS 與遊戲策略仍保留。
+- 同一控制端重連保留最近安全碼率與檔位；TCP 備援接續降載，RTC 重試保留 TCP 的後續降載結果，穩定後逐步恢復。
+- 回前景要求新影格；約三秒沒有恢復畫面就切換備援。
+- 新增「文字清晰（原生解析度，12–30 fps）」編碼偏好：保留被控螢幕原生像素（最長邊最多 8192），初始目標最多 6 Mbps，壅塞時優先降低更新率與碼率。
+- 擷取、瀏覽器顯示及觸控放大不超過被控螢幕實際像素，保留寬高比，支援直向螢幕與瀏覽器像素密度。
+- 保留自動 H.265 優先與 H.264 相容回退；Windows 本機擷取仍為 JPEG。
 
-本地版本驗證：Mac 與 Windows 均已更新至 1.2.65；Windows MSI 回傳碼 0，兩端 Host 與擷取程序正常。網頁版本 build 84 / cache taira-v100，Mac 提供的 app.js 與發布原始碼一致。
+211 項本地測試通過。Client build 85 / cache taira-v101 / styles v84。
+MSI 更新簽章、Sparkle 更新簽章、Mac packaged Bun Host、唯讀 DMG 掛載及 codesign deep strict 驗證通過。
+
+更新後重新整理遠端頁面。看文件時可在設定啟用編碼偏好，選擇「文字清晰」；串流目標碼率與實際傳輸量不同，實際清晰度與流暢度仍需在使用環境驗證。
