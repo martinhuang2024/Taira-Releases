@@ -3,19 +3,19 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.63
+目前版本: 1.2.64
 支援: Windows 11 x64
 
-修正畫質優先降解析度後未回升：JPEG/HEIC 改依相對連線基準的 ACK 延遲，持續穩定 30 秒後逐級試升；小影格不再被誤判為頻寬不足。WebRTC 保留冷卻期內的回升請求，quality 模式在壅塞 hold 結束後加快碼率恢復。固定解析度與 speed 720 上限保留。182 項本地測試通過，更新包沿用正式 Ed25519 簽章。
+修正卡住後顯示舊影格的恢復缺口：JPEG/HEIC 限制解碼時間、只保留最新待解碼影格；WebCodecs 丟棄逾時與倒序輸出。相對兩端經過時間偵測延遲 TCP history，不要求時鐘同步。MSE 排隊逾時切回 JPEG，不任意刪除 H.264 參考影格；RTP send 停滯後停止續送舊 frame 並要求 keyframe。已交給網路的封包無法撤回。
+
+190 項本地測試通過，包含 8 個 late decode／倒序／MSE backlog／RTP pause 故障模擬。沿用正式 Ed25519 更新簽章與既有 MSI 修正。Client build 83 / cache taira-v99。
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.63
+目前版本: 1.2.64
 支援: macOS 12+ / Apple Silicon
 
-相同修正原始碼打包；通過 packaged Bun Host 健康檢查、唯讀 DMG 掛載、App codesign deep strict 及 Sparkle 更新簽章驗證。
+相同修正原始碼打包；發布前驗證 packaged Bun Host、唯讀 DMG 掛載、App codesign deep strict 與 Sparkle 更新簽章。
 
-回升已以可重現的降級／穩定恢復測試驗證，實際網路效果仍需使用中觀察。
-
-兩端本地升級驗證完成：Windows MSI 回傳碼 0，Host 自動啟動；Mac 原 App 備份後更新並重新啟動，nativeReady true。Windows 與 Mac health 均回報 1.2.63，原有登入／TOTP 設定檔雜湊一致。
+尚未將使用者的實際卡住事件唯一歸因到某個 transport；實际網路效果仍需使用觀察。
