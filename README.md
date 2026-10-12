@@ -19,3 +19,5 @@
 相同修正原始碼打包；發布前驗證 packaged Bun Host、唯讀 DMG 掛載、App codesign deep strict 與 Sparkle 更新簽章。
 
 尚未將使用者的實際卡住事件唯一歸因到某個 transport；實际網路效果仍需使用觀察。
+
+兩端本地更新驗證完成：Windows MSI exit 0，Host／Capture 正常；Mac nativeReady true，Host／Capture／Input 正常。兩端 health 1.2.64 / client build 83 / cache v99，登入與 TOTP 設定檔雜湊未變更。請重新整理遠端頁面載入新版。
