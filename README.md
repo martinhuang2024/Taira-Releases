@@ -19,3 +19,5 @@
 相同原始碼打包；已通過 packaged Bun Host、唯讀 DMG 掛載、codesign deep strict 與 Sparkle 更新簽章驗證。
 
 編碼策略與回退以模擬測試驗證；流暢度仍取決於實際瀏覽器與連線。更新後請重新整理遠端頁面。
+
+本地版本驗證：Mac 與 Windows 均已更新至 1.2.65；Windows MSI 回傳碼 0，兩端 Host 與擷取程序正常。網頁版本 build 84 / cache taira-v100，Mac 提供的 app.js 與發布原始碼一致。
