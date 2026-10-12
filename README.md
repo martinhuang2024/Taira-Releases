@@ -17,3 +17,5 @@
 相同修正原始碼打包；通過 packaged Bun Host 健康檢查、唯讀 DMG 掛載、App codesign deep strict 及 Sparkle 更新簽章驗證。
 
 回升已以可重現的降級／穩定恢復測試驗證，實際網路效果仍需使用中觀察。
+
+兩端本地升級驗證完成：Windows MSI 回傳碼 0，Host 自動啟動；Mac 原 App 備份後更新並重新啟動，nativeReady true。Windows 與 Mac health 均回報 1.2.63，原有登入／TOTP 設定檔雜湊一致。
