@@ -3,21 +3,19 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.64
+目前版本: 1.2.65
 支援: Windows 11 x64
 
-修正卡住後顯示舊影格的恢復缺口：JPEG/HEIC 限制解碼時間、只保留最新待解碼影格；WebCodecs 丟棄逾時與倒序輸出。相對兩端經過時間偵測延遲 TCP history，不要求時鐘同步。MSE 排隊逾時切回 JPEG，不任意刪除 H.264 參考影格；RTP send 停滯後停止續送舊 frame 並要求 keyframe。已交給網路的封包無法撤回。
+自動模式及 TCP 背景恢復優先協商 H.265/HEVC，瀏覽器需提供支援。HEVC 失敗時約 1 秒後改試 H.264，並暫緩 HEVC 重試 5 分鐘；明確 H.264／不支援 HEVC 時維持 AVC。背景協商保留 TCP 解碼器，已正常播放的 RTC 不強制重建。Windows 本機擷取仍為 JPEG；HEVC 策略適用相容 Mac RTC Host。
 
-190 項本地測試通過，包含 8 個 late decode／倒序／MSE backlog／RTP pause 故障模擬。沿用正式 Ed25519 更新簽章與既有 MSI 修正。Client build 83 / cache taira-v99。
+194 項本地測試通過。Client build 84 / cache taira-v100，保留畫質回升與過期影格修正，沿用正式 Ed25519 更新簽章。
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.64
+目前版本: 1.2.65
 支援: macOS 12+ / Apple Silicon
 
-相同修正原始碼打包；發布前驗證 packaged Bun Host、唯讀 DMG 掛載、App codesign deep strict 與 Sparkle 更新簽章。
+相同原始碼打包；已通過 packaged Bun Host、唯讀 DMG 掛載、codesign deep strict 與 Sparkle 更新簽章驗證。
 
-尚未將使用者的實際卡住事件唯一歸因到某個 transport；實际網路效果仍需使用觀察。
-
-兩端本地更新驗證完成：Windows MSI exit 0，Host／Capture 正常；Mac nativeReady true，Host／Capture／Input 正常。兩端 health 1.2.64 / client build 83 / cache v99，登入與 TOTP 設定檔雜湊未變更。請重新整理遠端頁面載入新版。
+編碼策略與回退以模擬測試驗證；流暢度仍取決於實際瀏覽器與連線。更新後請重新整理遠端頁面。
