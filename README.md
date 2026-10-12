@@ -25,3 +25,5 @@
 MSI 更新簽章、Sparkle 更新簽章、Mac packaged Bun Host、唯讀 DMG 掛載及 codesign deep strict 驗證通過。
 
 更新後重新整理遠端頁面。看文件時可在設定啟用編碼偏好，選擇「文字清晰」；串流目標碼率與實際傳輸量不同，實際清晰度與流暢度仍需在使用環境驗證。
+
+本地安裝驗證：Mac 與 Windows 均已更新至 1.2.66 / client build 85。Windows MSI 回傳碼 0；兩端 Host、輸入與擷取程序正常。Mac HTTPS 網頁已確認可載入新解析度模組與「文字清晰」選項。
