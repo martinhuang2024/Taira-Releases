@@ -25,3 +25,5 @@
 MSI 與 Sparkle 更新簽章、Mac packaged Bun Host、唯讀 DMG 掛載及 codesign deep strict 驗證通過。
 
 更新後重新整理遠端頁面。文字清晰度改善已整合至畫質優先，無需選擇新增模式。實際清晰度與流暢度仍取決於瀏覽器和連線環境。
+
+本地安裝驗證：Mac／Windows 均為 1.2.67 / build 86，Windows MSI 回傳碼 0，兩端啟動正常。HTTPS 網頁已確認只保留自動／畫質／速度／遊戲四個選項。
