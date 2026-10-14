@@ -3,16 +3,24 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.69
+目前版本: 1.2.70
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.69
+目前版本: 1.2.70
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新
+## 本次更新（1.2.70）
+
+- 修復 iPad mini、iPadOS Retina 裝置連線時，Mac 桌面被錯誤縮在中央並出現過大黑邊的問題。
+- 改為依 iPad 實際 CSS 視窗寬度等比例適配，保留 Mac 桌面比例；不再用遠端像素除以 iPad DPR 限制畫面寬高。
+- 直向／橫向轉換及 iPad 可視範圍變化時重新計算縮放與移動邊界，保留既有觸控、編碼與安全功能。
+- 213 項 Node 測試通過（包含 iPad 顯示回歸測試）；client build 89、cache taira-v105。
+- Windows／macOS 正式更新套件簽章已驗證；更新 Host 後請重新整理 iPad 上的 Taira PWA，並檢查直向、橫向與觸控座標。
+
+## 前版更新（1.2.69）
 
 - 盤點並校正編碼設定，保留自動／画質／速度／遊戲四種偏好，不新增文字清晰模式。
 - 畫質優先以 1080p30 的 12 Mbps 為基準，依來源像素及 FPS 調整、最多 25 Mbps；720p30 約 5.33 Mbps，避免低於同尺寸的自動／速度預算。
