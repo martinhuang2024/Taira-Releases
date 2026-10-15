@@ -3,16 +3,25 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.70
+目前版本: 1.2.71
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.70
+目前版本: 1.2.71
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.70）
+## 本次更新（1.2.71）
+
+- 雙指放大解除 4 倍上限，也不再受遠端桌面原生像素或 iPad Retina DPR 限制，放大僅作用在本機畫面呈現，不提升串流編碼解析度。
+- 縮小最低回到螢幕適配的 1 倍，不會繼續縮成小框；縮回 1 倍時重設偏移。
+- 保留雙指縮放中心點、三指移動畫面、滑動捲動、輸入座標及視窗旋轉／大小調整；新增非有限縮放數值保護。
+- 215 項 Node 與 10 項 Windows MSI 測試通過。Client build 90／PWA cache taira-v106。
+- macOS DMG 已以既有 Sparkle 金鑰簽章並通過唯讀掛載及程式碼簽章檢查；Windows MSI 已以既有 Ed25519 更新金鑰簽章並通過版本及內容驗證。
+- 更新 Host 後重新整理 iPad 的 Taira PWA，再測試直向、橫向與縮放／觸控座標。
+
+## 前版更新（1.2.70）
 
 - 修復 iPad mini、iPadOS Retina 裝置連線時，Mac 桌面被錯誤縮在中央並出現過大黑邊的問題。
 - 改為依 iPad 實際 CSS 視窗寬度等比例適配，保留 Mac 桌面比例；不再用遠端像素除以 iPad DPR 限制畫面寬高。
