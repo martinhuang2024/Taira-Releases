@@ -3,16 +3,23 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.73
+目前版本: 1.2.74
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.73
+目前版本: 1.2.74
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.73）
+## 本次更新（1.2.74）
+
+- 驗證器六位動態碼輸入錯誤或已使用時，收到 `invalid_otp` 後立即清空輸入欄，顯示錯誤訊息並回到輸入欄，方便重新輸入；不影響已驗證裝置與其他連線錯誤處理。
+- iPhone 12 mini 主畫面 PWA 可使用狀態列後方的頂部安全區域；保留瀏海、系統限制與完整遠端畫面等比例顯示，不強制裁切桌面。使用 Safari 網址列時仍由 iOS 管理瀏覽器區域。
+- 已通過 223 項 Node 回歸測試及 10 項 Windows MSI 測試。Client build 93、app.js?v=107、PWA cache `taira-v109`。兩平台正式安裝檔沿用既有 Ed25519/Sparkle 更新簽章。
+- 更新被控端到 1.2.74，重新開啟 iPhone 主畫面 Taira；請實機確認頂部顯示空間與錯誤動態碼重新輸入。
+
+## 前版更新（1.2.73）
 
 - 修復一般／自動模式仍把 WebRTC 接收端影格等待時間錯當作網路壅塞的問題，避免快速移動畫面時即使沒有丟包，碼率仍連續降至 15% 下限。
 - 同步修復碼率恢復條件：畫面緩衝偏高，但實際網路健康時允許逐步恢復；保留真實丟包、RTT 異常、網路 jitter、佇列壅塞與解碼掉幀的保護。
