@@ -3,16 +3,25 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.72
+目前版本: 1.2.73
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.72
+目前版本: 1.2.73
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.72）
+## 本次更新（1.2.73）
+
+- 修復一般／自動模式仍把 WebRTC 接收端影格等待時間錯當作網路壅塞的問題，避免快速移動畫面時即使沒有丟包，碼率仍連續降至 15% 下限。
+- 同步修復碼率恢復條件：畫面緩衝偏高，但實際網路健康時允許逐步恢復；保留真實丟包、RTT 異常、網路 jitter、佇列壅塞與解碼掉幀的保護。
+- 加入 iPad「複製瀏覽器診斷」的輸入確認往返、Host 處理時間與控制 RTT，和畫面緩衝等待分開記錄，協助區分點擊指令延遲、視覺回饋延遲。
+- 使用 1.2.72 現場 Log 當作回歸測試案例，原先會失敗，修正後通過；221 項 Node 及 10 項 Windows MSI 測試通過。
+- 前端 build 92、PWA cache taira-v108；Windows MSI 與 macOS DMG / appcast 均使用既有更新金鑰簽章及驗證。
+- 更新 Host 後重新開啟 iPad PWA，測試快速拖曳、點擊回饋及畫面延遲。平均 WebRTC buffer 不等同於精確的端到端點擊耗時，仍需實機測量。
+
+## 前版更新（1.2.72）
 
 - 修正快速變動畫面時，WebRTC 接收端的影格等待時間被誤認為網路抖動，造成遊戲模式持續降碼率、畫面卡頓的問題。
 - 只有出現真實丟包、封包 jitter、RTT 持續暴增、送出佇列壓力等訊號時，才依原本保護機制調降碼率；仍保留接收端持續凍結時的 60→30 FPS 回退。
