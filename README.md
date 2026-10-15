@@ -3,16 +3,24 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.74
+目前版本: 1.2.75
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.74
+目前版本: 1.2.75
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.74）
+## 本次更新（1.2.75）
+
+- iPhone 12 mini／其他手機新增「畫面顯示」選擇：完整畫面保留桌面全部內容；填滿螢幕等比例放大、減少長寬比造成的黑邊，但會裁切邊緣，可透過三指手勢移動查看。
+- 依遠端畫面比例與手機視窗動態計算滿版縮放，轉向、畫面更新時維持合適比例；不拉伸變形，也保留既有點擊座標與雙指縮放。
+- 預設完整畫面，避免手機直向時大量裁掉桌面；右上角設定可切換「填滿螢幕」並記住選項。
+- 包含前版的錯誤動態碼自動清除與 iOS 安全區修正。225 項 Node、10 項 Windows MSI 測試通過。Client build 94、PWA cache taira-v110；Mac/Windows 簽章版同步更新。
+- 更新 Host 後重新開啟手機 Taira PWA，在右上角設定切換填滿螢幕，實測黑邊與觸控位置。
+
+## 前版更新（1.2.74）
 
 - 驗證器六位動態碼輸入錯誤或已使用時，收到 `invalid_otp` 後立即清空輸入欄，顯示錯誤訊息並回到輸入欄，方便重新輸入；不影響已驗證裝置與其他連線錯誤處理。
 - iPhone 12 mini 主畫面 PWA 可使用狀態列後方的頂部安全區域；保留瀏海、系統限制與完整遠端畫面等比例顯示，不強制裁切桌面。使用 Safari 網址列時仍由 iOS 管理瀏覽器區域。
