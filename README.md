@@ -3,16 +3,25 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.71
+目前版本: 1.2.72
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.71
+目前版本: 1.2.72
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.71）
+## 本次更新（1.2.72）
+
+- 修正快速變動畫面時，WebRTC 接收端的影格等待時間被誤認為網路抖動，造成遊戲模式持續降碼率、畫面卡頓的問題。
+- 只有出現真實丟包、封包 jitter、RTT 持續暴增、送出佇列壓力等訊號時，才依原本保護機制調降碼率；仍保留接收端持續凍結時的 60→30 FPS 回退。
+- 增強 iPad PWA 複製瀏覽器診斷：解碼 FPS、掉幀、freeze、真正網路 jitter、影格等待時間、RTT 與接收碼率可分開觀察。
+- 以實際異常數據先重現失敗再修正，218 項 Node 測試及 10 項 Windows MSI 測試通過。Client build 91、PWA cache taira-v107。
+- Windows MSI 使用既有 Ed25519 金鑰簽章；macOS DMG / appcast 使用既有 Sparkle 金鑰簽章，版本、封裝與簽章皆通過驗證。
+- 更新 Host 後請重新開啟 iPad PWA 測試快速滑動、視窗移動、遊戲模式及 1.2.71 的無上限縮放。
+
+## 前版更新（1.2.71）
 
 - 雙指放大解除 4 倍上限，也不再受遠端桌面原生像素或 iPad Retina DPR 限制，放大僅作用在本機畫面呈現，不提升串流編碼解析度。
 - 縮小最低回到螢幕適配的 1 倍，不會繼續縮成小框；縮回 1 倍時重設偏移。
