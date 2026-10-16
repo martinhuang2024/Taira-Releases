@@ -3,16 +3,24 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.75
+目前版本: 1.2.76
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.75
+目前版本: 1.2.76
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.75）
+## 本次更新（1.2.76）
+
+- 新增「信任此裝置（免動態碼）」：使用 P-256 不可匯出裝置私鑰（WebCrypto / IndexedDB）替已登入的瀏覽器綁定獨立身分，之後可驗證裝置金鑰後建立控制端 Session。
+- 設定頁可查看已授權裝置、單獨撤銷，撤銷時清除該瀏覽器現有 Session 並中斷控制連線；驗證挑戰 90 秒過期且只能使用一次。
+- 保留現有 TOTP 六位數登入與復原方式，不自動強制切換。這是第一階段的裝置金鑰功能，**尚非 WebAuthn Passkey／Face ID／Touch ID，也不是每台裝置掃 QR 後由 Host 逐台核准**。
+- 已通過 233 項 JavaScript、28 項 Rust 和 10 項 Windows MSI Python 測試；Windows MSI 使用既有 Ed25519 正式金鑰簽章，macOS DMG／Sparkle 使用既有正式金鑰簽章並完成掛載、程式碼簽章及封裝 Bun Host 啟動測試。
+- Client build 95、app.js?v=109、PWA cache taira-v111。更新 Host 後請重新開啟 iPhone／iPad PWA，再手動選擇是否信任目前裝置；首次設定及裝置撤銷仍建議實機驗證。
+
+## 前版更新（1.2.75）
 
 - iPhone 12 mini／其他手機新增「畫面顯示」選擇：完整畫面保留桌面全部內容；填滿螢幕等比例放大、減少長寬比造成的黑邊，但會裁切邊緣，可透過三指手勢移動查看。
 - 依遠端畫面比例與手機視窗動態計算滿版縮放，轉向、畫面更新時維持合適比例；不拉伸變形，也保留既有點擊座標與雙指縮放。
