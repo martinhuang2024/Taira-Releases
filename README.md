@@ -3,16 +3,24 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.80
+目前版本: 1.2.81
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.80
-支援: macOS 14+ / Apple Silicon（不再支援 macOS 12/13）
+目前版本: 1.2.81
+支援: macOS 14+ / Apple Silicon
 
-## 本次更新（1.2.80）
+## 本次更新（1.2.81）
+
+- macOS 選單列與 Windows 系統匣將原本獨立的「建立 Passkey QR」入口合併進「重設安全設定」子選單。裡面有「建立 Passkey QR…」及「重設全部驗證設定…」兩項，後者仍必須確認才會清除設定。
+- 將「已驗證裝置」改名為「撤銷已驗證裝置」，保留各裝置資訊、個別撤銷確認和連線終止功能。
+- 不修改現有 Passkey、Bitwarden、動態碼或已儲存的工作階段。只更新原生 Host 選單及版本，瀏覽器 PWA 不需額外清快取。
+- 251 項 JavaScript、28 項 Rust、10 項 MSI Python 測試通過；Mac Capture 建置、Bun Host 啟動、macOS 14 App 簽章與 Sparkle 更新簽章驗證成功。Windows Rust Host／MSI 建置及正式 Ed25519 更新簽章通過。
+- macOS／Windows 的原生選單外觀仍需在實際設備上確認。
+
+## 前版更新（1.2.80）
 
 - 首次設定可由 Host「安全設定 · 首次建立 Passkey QR…」產生 QR：Mac 選單列或 Windows 系統匣點選，限 2 分鐘、只能完成一次註冊。手機掃描後開啟 Host 的 Tailscale HTTPS 專屬設定頁，使用 Bitwarden 或系統提供的 Passkey 完成 WebAuthn 註冊。**掃描本身不會取得遠端控制權**。
 - 第一次設定可直接選 Passkey，不必先信任裝置或建立六位數 TOTP。原本使用 TOTP 的裝置仍可繼續使用；登入方式保持 Passkey 與 TOTP 二選一。
