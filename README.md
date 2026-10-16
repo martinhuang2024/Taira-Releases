@@ -3,16 +3,26 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.78
+目前版本: 1.2.79
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.78
+目前版本: 1.2.79
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.78）
+## 本次更新（1.2.79）
+
+- 重整 PWA 時，先從 Host 確認前端版本再開啟登入畫面，解決登入畫面短暫閃現、舊前端在輸入動態碼後才跳出更新、更新後需要再輸入一次的流程問題。新版會對每個 Host build 自動嘗試一次前端快取清理；檢查失敗則顯示重新檢查按鈕，不先消耗動態碼。
+- 登入方式改為「六位數動態碼」或「Passkey」**二選一**。新電腦不必先執行「信任此裝置」。支援標準 WebAuthn 的 Bitwarden、其他密碼管理器及系統 Passkey；跨裝置手機掃 QR 由瀏覽器提供，是否顯示 QR 視瀏覽器及裝置支援而定。登入後可直接按「新增 Passkey」註冊。
+- 控制端移除整個「裝置安全／信任此裝置」區塊，以及重複的「畫面顯示」完整／填滿切換；自適應畫面、縮放與手勢保留。過去裝置金鑰不能再單獨換取登入工作階段。
+- Mac Host 選單與 Windows Host 系統匣新增「已驗證裝置」清單，顯示可辨識的裝置類型、驗證方式和連線狀態。可選擇單台裝置撤銷工作階段並中斷連線；用戶仍可以再次使用有效的動態碼或 Passkey 登入。此功能不會刪除 Bitwarden／系統儲存的 Passkey。
+- 將 `dist/app.js` 的 Passkey 與 Session 拆成 `dist/passkey.js`、`dist/auth-client.js`；Host 的裝置管理拆成 `host/device-management.mjs`，降低登入功能與畫面串流耦合。
+- 247/247 JavaScript、28/28 Rust、10/10 MSI Python 測試通過。macOS 簽章 DMG 已驗證、封裝 Bun Host 啟動正常；Windows MSI 已使用正式 Ed25519 更新金鑰簽章並核對內容與升級設定。
+- 版本 1.2.79、client build 99、app.js?v=113、styles.css?v=87、PWA cache taira-v115。更新 Host 後請重新開啟 PWA；真實 Bitwarden 選擇視窗、手機跨裝置 QR 及 Windows 實機安裝仍需在設備上確認。
+
+## 前版更新（1.2.78）
 
 - 修正手機及窄視窗中「裝置安全」區塊的按鈕排版：將「1. 信任此裝置」與「2. 啟用 Passkey」改成一致寬度、上下排列、容易點選的按鈕，避免原本 Passkey 長文字換成多行。
 - 精簡 Bitwarden／Passkey 說明，改用中性說明樣式，不再整段顯示紅色警告背景；狀態列或裝置清單沒內容時不顯示空白框。
