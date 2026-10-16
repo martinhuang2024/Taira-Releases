@@ -3,16 +3,25 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.76
+目前版本: 1.2.77
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.76
+目前版本: 1.2.77
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.76）
+## 本次更新（1.2.77）
+
+- 新增真正的標準 WebAuthn Passkey，供 Bitwarden、1Password、系統鑰匙圈或 Windows Hello 等符合標準的提供者使用；在瀏覽器按「啟用 Passkey」，由瀏覽器／密碼管理器決定保存位置。這不是專屬 Bitwarden API，不要求安裝特定 App。
+- 首次仍要輸入原本六位數動態碼並「信任此裝置」。之後使用這台瀏覽器獨立裝置金鑰加上 Passkey 驗證登入；同步到密碼管理器的 Passkey 可以讓**其他已信任的瀏覽器**共用，不能跳過新瀏覽器的裝置授權。
+- 相容沒有指紋或臉部辨識硬體的電腦：WebAuthn 要求使用者在密碼管理器／裝置上確認，驗證層級為 `userVerification: preferred`，**不保證每次都觸發生物辨識或 PIN**；既有 TOTP 留作復原用途。
+- 可以在設定新增多把 Passkey 或手動移除本台 Host 上的所有 Passkey；撤銷單台裝置金鑰不會誤刪共用的密碼管理器 Passkey。驗證僅允許 Host 原始 Tailscale HTTPS 網域，挑戰一次有效、90 秒失效。
+- 240 項 JS、28 項 Rust、10 項 MSI Python 測試通過，包含真實 WebAuthn 加密簽章與跨裝置測試。macOS 封裝 Bun Host 啟動測試、程式碼簽章、DMG 掛載與 Sparkle 簽章均驗證通過；Windows MSI 正式 Ed25519 簽章、升級設定與內容已驗證。
+- Client build 96、app.js?v=110、PWA cache taira-v112。更新兩平台 Host 後，請在真實電腦的 Bitwarden 擴充功能／手機 PWA 測試建立與使用 Passkey。尚未實機驗證所有密碼管理器與跨裝置平台組合。
+
+## 前版更新（1.2.76）
 
 - 新增「信任此裝置（免動態碼）」：使用 P-256 不可匯出裝置私鑰（WebCrypto / IndexedDB）替已登入的瀏覽器綁定獨立身分，之後可驗證裝置金鑰後建立控制端 Session。
 - 設定頁可查看已授權裝置、單獨撤銷，撤銷時清除該瀏覽器現有 Session 並中斷控制連線；驗證挑戰 90 秒過期且只能使用一次。
