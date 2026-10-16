@@ -3,16 +3,24 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.77
+目前版本: 1.2.78
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.77
+目前版本: 1.2.78
 支援: macOS 12+ / Apple Silicon
 
-## 本次更新（1.2.77）
+## 本次更新（1.2.78）
+
+- 修正手機及窄視窗中「裝置安全」區塊的按鈕排版：將「1. 信任此裝置」與「2. 啟用 Passkey」改成一致寬度、上下排列、容易點選的按鈕，避免原本 Passkey 長文字換成多行。
+- 精簡 Bitwarden／Passkey 說明，改用中性說明樣式，不再整段顯示紅色警告背景；狀態列或裝置清單沒內容時不顯示空白框。
+- 不更動原本 TOTP、裝置金鑰及 WebAuthn/Bitwarden 登入流程。新增三項 CSS 與 PWA 回歸測試，總計 243 項 JavaScript、28 項 Rust、10 項 MSI Python 測試通過。
+- Windows MSI 與 macOS DMG 均使用既有正式更新金鑰簽章並驗證。Client build 97、app.js?v=111、styles.css?v=86、PWA cache taira-v113。
+- 將 Host 更新至 1.2.78 後，重新開啟手機 PWA 並檢查設定面板按鈕。此版尚未完成真實手機畫面驗證。
+
+## 前版更新（1.2.77）
 
 - 新增真正的標準 WebAuthn Passkey，供 Bitwarden、1Password、系統鑰匙圈或 Windows Hello 等符合標準的提供者使用；在瀏覽器按「啟用 Passkey」，由瀏覽器／密碼管理器決定保存位置。這不是專屬 Bitwarden API，不要求安裝特定 App。
 - 首次仍要輸入原本六位數動態碼並「信任此裝置」。之後使用這台瀏覽器獨立裝置金鑰加上 Passkey 驗證登入；同步到密碼管理器的 Passkey 可以讓**其他已信任的瀏覽器**共用，不能跳過新瀏覽器的裝置授權。
