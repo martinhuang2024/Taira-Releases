@@ -3,16 +3,26 @@
 ## Windows
 [下載 TairaSetup.msi](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/TairaSetup.msi)
 
-目前版本: 1.2.79
+目前版本: 1.2.80
 支援: Windows 11 x64
 
 ## macOS
 [下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
-目前版本: 1.2.79
-支援: macOS 12+ / Apple Silicon
+目前版本: 1.2.80
+支援: macOS 14+ / Apple Silicon（不再支援 macOS 12/13）
 
-## 本次更新（1.2.79）
+## 本次更新（1.2.80）
+
+- 首次設定可由 Host「安全設定 · 首次建立 Passkey QR…」產生 QR：Mac 選單列或 Windows 系統匣點選，限 2 分鐘、只能完成一次註冊。手機掃描後開啟 Host 的 Tailscale HTTPS 專屬設定頁，使用 Bitwarden 或系統提供的 Passkey 完成 WebAuthn 註冊。**掃描本身不會取得遠端控制權**。
+- 第一次設定可直接選 Passkey，不必先信任裝置或建立六位數 TOTP。原本使用 TOTP 的裝置仍可繼續使用；登入方式保持 Passkey 與 TOTP 二選一。
+- macOS 原生 QR 介面開始移至 **Swift + SwiftUI**：首次 Passkey QR 視窗及 TOTP/Passkey QR 產生改由 `native/TairaSecurityViews.swift` 負責。Objective-C 暫保留影像擷取及選單列橋接，後續將逐模組遷移，不會假裝全部已改為 Swift。
+- 不再為舊版 macOS 額外維護介面兼容：**最低 macOS 14.0**。Mac App Bundle 和 Sparkle appcast 都明確標示 14.0。
+- Windows 使用 Rust Host 原有 QR 視窗展示一次性 Passkey 設定連結。新頁面有清楚的新增 Passkey 按鈕，QR 失效或驗證失敗時會拒絕註冊。
+- 249 項 JavaScript、28 項 Rust、10 項 MSI Python 測試通過。Mac Capture + SwiftUI 編譯、Bun Host 啟動、DMG 掛載與簽章均通過；Windows Rust Host 已跨平台建置，MSI 使用正式 Ed25519 金鑰簽章。
+- 版本 `1.2.80`、client build `100`、app.js?v=114、passkey.js?v=2、PWA cache taira-v116。Bitwarden 選擇視窗、手機掃碼註冊及 Windows 實機安裝仍需在實際設備驗證。
+
+## 前版更新（1.2.79）
 
 - 重整 PWA 時，先從 Host 確認前端版本再開啟登入畫面，解決登入畫面短暫閃現、舊前端在輸入動態碼後才跳出更新、更新後需要再輸入一次的流程問題。新版會對每個 Host build 自動嘗試一次前端快取清理；檢查失敗則顯示重新檢查按鈕，不先消耗動態碼。
 - 登入方式改為「六位數動態碼」或「Passkey」**二選一**。新電腦不必先執行「信任此裝置」。支援標準 WebAuthn 的 Bitwarden、其他密碼管理器及系統 Passkey；跨裝置手機掃 QR 由瀏覽器提供，是否顯示 QR 視瀏覽器及裝置支援而定。登入後可直接按「新增 Passkey」註冊。
