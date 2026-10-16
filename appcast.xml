@@ -3,13 +3,13 @@
     <channel>
         <title>Taira</title>
         <item>
-            <title>1.2.82</title>
-            <pubDate>Fri, 16 Oct 2026 14:56:54 +0800</pubDate>
-            <sparkle:version>1.2.82</sparkle:version>
-            <sparkle:shortVersionString>1.2.82</sparkle:shortVersionString>
+            <title>1.2.83</title>
+            <pubDate>Fri, 16 Oct 2026 15:18:02 +0800</pubDate>
+            <sparkle:version>1.2.83</sparkle:version>
+            <sparkle:shortVersionString>1.2.83</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg" length="29006223" type="application/octet-stream" sparkle:edSignature="VMNTJlqzL+cxafZ87Q+d4Y0/pgb6VOhCqVsGAe6yJQNTGHTUb21LZKDQvGoDnHdNYBbgQVWjwJhcytU0pGZhDA=="/>
+            <enclosure url="https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg" length="29006289" type="application/octet-stream" sparkle:edSignature="+pUc6M6cGwNEiGXUNX8DmjrIn8/PykBo47/Hyq18gVrUU4l0J3cnTxLlO94tb5JZl0DgayXwf09fH84Pl9iADA=="/>
         </item>
     </channel>
 </rss>
