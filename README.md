@@ -2,7 +2,7 @@
 
 Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／Windows 電腦。
 
-目前版本：1.2.101
+目前版本：1.2.102
 
 ## 下載
 
@@ -10,6 +10,13 @@ Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／W
 - Mac（Apple 晶片、macOS 14 或更新版本）：[下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
 已安裝 Taira 的話，可以直接在程式裡按「檢查更新」。
+
+## 1.2.102 更新內容
+
+- Windows 新增系統聲音傳輸；音訊裝置切換或暫時失效時會重新連接。
+- Mac 畫面與聲音改用有上限的輸出佇列，處理慢速讀取與過期資料，避免持續累積。
+- 完成播放、連線恢復與資源釋放的整合，補強 H.264 與 JPEG 備援切換、前端快取更新及輸入延遲診斷。
+- Windows 預設硬體 H.264，硬體失效時自動改用 JPEG。本版已通過雙平台建置、自動化與封裝驗證；iPad Safari／PWA 與 Windows 真機驗收待進行。
 
 ## 1.2.101 更新內容
 
