@@ -2,7 +2,7 @@
 
 Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／Windows 電腦。
 
-目前版本：1.2.106
+目前版本：1.2.107
 
 ## 下載
 
@@ -10,6 +10,12 @@ Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／W
 - Mac（Apple 晶片、macOS 14 或更新版本）：[下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
 已安裝 Taira 的話，可以直接在程式裡按「檢查更新」。
+
+## 1.2.107 更新內容
+
+- 修正在 Windows 複製文字後，到遠端 Mac 按右鍵或用選單「貼上」，卻貼出上一次內容的問題：現在回到網頁或在遠端畫面按下滑鼠時，會先把 Windows 剪貼簿同步到 Mac。
+- 第一次在遠端畫面按右鍵時，Chrome／Edge 可能詢問是否允許讀取剪貼簿，請選擇允許。
+- 在 Mac 複製後，若 Windows 剪貼簿沒有立即更新，點一下遠端畫面即可補上。
 
 ## 1.2.106 更新內容
 
