@@ -2,7 +2,7 @@
 
 Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／Windows 電腦。
 
-目前版本：1.2.113
+目前版本：1.2.114
 
 ## 下載
 
@@ -10,6 +10,10 @@ Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／W
 - Mac（Apple 晶片、macOS 14 或更新版本）：[下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
 已安裝 Taira 的話，可以直接在程式裡按「檢查更新」。
+
+## 1.2.114 更新內容
+
+- 手機和平板可以打字了：畫面右側新增鍵盤按鈕，點一下就會跳出鍵盤；點到遠端的輸入框時也會自動跳出。中文、注音、emoji 都能直接輸入。
 
 ## 1.2.113 更新內容
 
