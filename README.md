@@ -2,7 +2,7 @@
 
 Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／Windows 電腦。
 
-目前版本：1.2.112
+目前版本：1.2.113
 
 ## 下載
 
@@ -10,6 +10,10 @@ Taira 可以透過手機、平板或另一台電腦遠端操作自己的 Mac／W
 - Mac（Apple 晶片、macOS 14 或更新版本）：[下載 Taira.dmg](https://raw.githubusercontent.com/martinhuang2024/Taira-Releases/main/Taira.dmg)
 
 已安裝 Taira 的話，可以直接在程式裡按「檢查更新」。
+
+## 1.2.113 更新內容
+
+- 網路正常時，畫面不會再因為電腦偶爾卡一下就變模糊將近一分鐘；網路真的不穩時仍會自動降低畫質。
 
 ## 1.2.112 更新內容
 
